@@ -1,17 +1,17 @@
 var searchData = "";
 //Gets Date from JavaScript
-var year = new Date().getFullYear();
-var month = new Date().getMonth() + 1;
-var day = new Date().getDate();
+var yearDate = new Date().getFullYear();
+var monthDate = new Date().getMonth() + 1;
+var dayDate = new Date().getDate();
 $("#searchButton").on("click", function () {
-  wsearchDatah = $("#weather-input").val().trim();
-  console.log(wsearchDatah);
+  searchData = $("#weather-input").val().trim();
+  console.log(searchData);
   callWeather();
   callFiveDay();
 })
 
 function callWeather() {
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + wsearchDatah + "&appid=f08e0e7293a9c130de4d782ff1db313d";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchData + "&appid=f08e0e7293a9c130de4d782ff1db313d";
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -26,7 +26,7 @@ function callWeather() {
     var wind = response.wind.speed;
     //Creates the card for the current weather
     var cardBody = $("<div>").addClass("card-body");
-    var cardTitle = $("<h3>").addClass("card-title").text(response.name + " " + month + "/" + day + "/" + year);
+    var cardTitle = $("<h3>").addClass("card-title").text(response.name + " " + monthDate + "/" + dayDate + "/" + yearDate);
     var cardTemp = $("<p>").text("Temperature: " + fahrenheit);
     var cardHumidity = $("<p>").text("Humidity: " + humidity);
     var cardWind = $("<p>").text("Wind Speed: " + wind);
@@ -50,7 +50,7 @@ function callUVIndex(lat, lon) {
   })
 }
 function callFiveDay () {
-  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + weatherSearch + "&appid=f08e0e7293a9c130de4d782ff1db313d"
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchData + "&appid=f08e0e7293a9c130de4d782ff1db313d"
   $.ajax({
     url: queryURL,
     method: "GET"

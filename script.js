@@ -6,12 +6,12 @@ var dayDate = new Date().getDate();
 $("#searchButton").on("click", function () {
   searchData = $("#weather-input").val().trim();
   console.log(searchData);
-  callWeather();
+  callWeatherTemps();
   callFiveDay();
 })
 
-function callWeather() {
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchData + "&appid=f08e0e7293a9c130de4d782ff1db313d";
+function callWeatherTemps() {
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchData + "&appid=6ec271a7eaa197efb35f9b736da2f3eb";
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -37,7 +37,7 @@ function callWeather() {
 }
 //New API call for the UV index
 function callUVIndex(lat, lon) {
-  var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=f08e0e7293a9c130de4d782ff1db313d"
+  var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=6ec271a7eaa197efb35f9b736da2f3eb"
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -50,7 +50,7 @@ function callUVIndex(lat, lon) {
   })
 }
 function callFiveDay () {
-  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchData + "&appid=f08e0e7293a9c130de4d782ff1db313d"
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchData + "&appid=6ec271a7eaa197efb35f9b736da2f3eb"
   $.ajax({
     url: queryURL,
     method: "GET"

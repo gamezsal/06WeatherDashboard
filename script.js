@@ -70,7 +70,9 @@ function callUVIndex(lat, lon) {
     $("#weather-append").append(cardUV);
   });
 }
+//New API call to get the 5 day forecast
 function callFiveDay(lat, lon) {
+  
   var queryURL =
     " https://api.openweathermap.org/data/2.5/onecall?lat=" +
     lat +
@@ -85,7 +87,7 @@ function callFiveDay(lat, lon) {
     var dayArray = response.daily;
     for (var i = 0; i < 5; i++) {
       var forecastWeather = dayArray[i + 1];
-      // var dayIncrement = day++;
+
       var date = new Date(forecastWeather.dt * 1000);
       console.log(date);
       var fahrenheit = (
@@ -101,6 +103,8 @@ function callFiveDay(lat, lon) {
     }
   });
 }
+
+//Display the search history of preveious city searches
 function displaySearchHistory(cities) {
   $("#search-history").empty();
   for (var i = 0; i < cities.length; i++) {

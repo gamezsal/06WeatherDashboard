@@ -3,7 +3,7 @@ var searchHistory = JSON.parse(localStorage.getItem("cities")) || [];
 
 $("#searchButton").on("click", function () {
   var searchData = $("#weather-input").val().trim();
-  console.log(searchData);
+ 
   callWeatherTemps(searchData);
 });
 
@@ -17,9 +17,10 @@ function callWeatherTemps(city) {
     method: "GET",
   }).then(function (response) {
     searchHistory.unshift(response.name)
+    searchHistory = Array.from(new Set(searchHistory))
     localStorage.setItem("cities", JSON.stringify(searchHistory))
     displaySearchHistory(searchHistory)
-
+ 
     //Empties the weather-append div when button is pressed
     $("#weather-append").empty();
     //Converts to Fahrenheit from Kelvin
@@ -36,6 +37,7 @@ function callWeatherTemps(city) {
     var cardTitle = $("<h3>")
       .addClass("card-title")
       .text(response.name + " " + new Date().toLocaleDateString());
+      cardTitle.append("<img src=\"http://openweathermap.org/img/wn/"+ response.weather[0].icon + ".png\" >")
     var cardTemp = $("<p>").text("Temperature: " + fahrenheit);
     var cardHumidity = $("<p>").text("Humidity: " + humidity);
     var cardWind = $("<p>").text("Wind Speed: " + wind);
@@ -63,9 +65,9 @@ function callUVIndex(lat, lon) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+   
     var uv = response.value;
-    console.log(uv);
+
     var cardUV = $("<p>").text("UV Index: " + uv);
     $("#weather-append").append(cardUV);
   });
@@ -85,9 +87,11 @@ function callFiveDay(lat, lon) {
   }).then(function (response) {
     console.log(response);
     var dayArray = response.daily;
+    $("#fiveday-append").empty()
+
     for (var i = 0; i < 5; i++) {
       var forecastWeather = dayArray[i + 1];
-
+      
       var date = new Date(forecastWeather.dt * 1000);
       console.log(date);
       var fahrenheit = (
@@ -98,6 +102,7 @@ function callFiveDay(lat, lon) {
       var cardTitle = $("<h3>")
         .addClass("card-title")
         .text(date.toLocaleDateString());
+        cardTitle.append("<img src=\"http://openweathermap.org/img/wn/"+ forecastWeather.weather[0].icon + ".png\" >")
       var cardTemp = $("<p>").text("Temperature: " + fahrenheit);
       $("#fiveday-append").append(cardBody, cardTitle, cardTemp);
     }

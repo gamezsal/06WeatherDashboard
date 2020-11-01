@@ -98,7 +98,7 @@ function callFiveDay(lat, lon) {
     method: "GET",
   }).then(function (response) {
     var dayArray = response.daily;
-    console.log(response)
+
     //empties the five day results
     $("#fiveday-append").empty();
 

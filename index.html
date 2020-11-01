@@ -9,8 +9,8 @@
 
   <body>
     <!-- Weather Header Jumbotron  -->
-    <div class="jumbotron">
-      <h1 class="display-3">Weather Forecast</h1>
+    <div class="jumbotron bg-secondary">
+      <h1 class="display-6">Weather Forecast</h1>
       <hr class="my-2" />
       <p class="lead"></p>
     </div>
@@ -18,9 +18,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-auto">
-          <div class="card">
+          <div class="card-header bg-secondary rounded">
             <div class="card-body">
-              <h4 class="card-title">Weather Search</h4>
+              <h4 class="card-tittle">Weather Search</h4>
               <input type="text" id="weather-input" />
               <button
                 class="btn btn-primary btn"
@@ -33,15 +33,16 @@
             </div>
           </div>
           <!-- List Search History -->
-          <ul role="button" class="list-group" id="search-history">
+          <ul role="button" class=" font-weight-bold list-group" id="search-history">
           </ul>
         </div>
+
         <!-- One day Weather and Five Day weather container -->
         <div class="col">
-          <div class="card" id="weather-append"></div>
+          <div class="card text-center font-weight-bold bg-secondary rounded" id="weather-append"></div>
         </div>
         <div class="col">
-          <div class="card" id="fiveday-append"></div>
+          <div class="card text-center font-weight-bold bg-secondary rounded" id="fiveday-append"></div>
         </div>
       </div>
     </div>
